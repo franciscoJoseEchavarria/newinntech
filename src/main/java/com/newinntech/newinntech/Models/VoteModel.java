@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor //constructor con todos los argumentos
 @Builder //patron de diseño builder
 
-@Table(name = "Vote") //nombre de la tabla en la base de datos
-public class Vote {
+
+public class VoteModel {
 
     private Long id; // Identificador único del votante
 
-    private Voter voter_id;
+    private VoterModel voter_id;
 
-    private Candidate candidate_id;
+    private CandidateModel candidate_id;
 
 
 }

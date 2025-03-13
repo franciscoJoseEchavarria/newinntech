@@ -1,8 +1,5 @@
 package com.newinntech.newinntech.Entitys;
 
-
-import com.newinntech.newinntech.Models.Candidate;
-import com.newinntech.newinntech.Models.Voter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,9 +21,9 @@ public class VoteEntity {
 
     @ManyToOne
     @JoinColumn(name = "voter_id", nullable = false)
-    private Voter voter_id;
+    private VoterEntity voter_id;
 
     @ManyToOne
     @JoinColumn(name = "candidate_id", nullable = false)
-    private Candidate candidate_id;
+    private CandidateEntity candidate_id;
 }

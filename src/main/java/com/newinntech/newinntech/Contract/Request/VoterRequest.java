@@ -1,4 +1,4 @@
 package com.newinntech.newinntech.Contract.Request;
 
-public class CandidateResponse {
+public class VoterRequest {
 }

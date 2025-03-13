@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder //patron de diseño builder
 
 
-public class Candidate {
+public class CandidateModel {
 
     private String id; // Identificador único del votante
     private String name;

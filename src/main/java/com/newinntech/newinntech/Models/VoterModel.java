@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor //constructor con todos los argumentos
 @Builder //patron de diseño builder
 
-@Table(name = "voter") //nombre de la tabla en la base de datos
-public class Voter {
+
+public class VoterModel {
 
     private Long id; // Identificador único del votante
     private String name;
