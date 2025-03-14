@@ -12,7 +12,6 @@ import lombok.Data;
 @AllArgsConstructor //constructor con todos los argumentos
 @Builder //patron de diseño builder
 public class VoteRequest {
-
-    private VoterModel voter_id;
-    private CandidateModel candidate_id;
+    private VoterModel voter;
+    private CandidateModel candidate;
 }

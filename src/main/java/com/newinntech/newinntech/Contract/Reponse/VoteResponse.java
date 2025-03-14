@@ -14,7 +14,7 @@ import lombok.Data;
 public class VoteResponse {
 
     private Long id;
-    private VoterModel voter_id;
-    private CandidateModel candidate_id;
+    private VoterModel voter;
+    private CandidateModel candidate;
 
 }

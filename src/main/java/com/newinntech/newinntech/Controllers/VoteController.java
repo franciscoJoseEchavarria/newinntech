@@ -24,8 +24,12 @@ public class VoteController {
 
 
     @PostMapping ("/votes")
-    public VoteResponse createVote (VoteRequest voteRequest) {
+    public VoteResponse createVote (@RequestBody VoteRequest voteRequest) {
         VoteModel voteModel = voteInterface.mapVoteRequestToVoteModel(voteRequest);
+        System.out.println(voteModel.getId());
+        System.out.println("voteModel.getId() = " + voteModel.getId());
+        System.out.println("voteModel.getCandidate().getId() = " + voteModel.getCandidate().getId());
+        
         return voteInterface.mapVoteModelToVoteResponse(voteService.createVote(voteModel));
     }
 

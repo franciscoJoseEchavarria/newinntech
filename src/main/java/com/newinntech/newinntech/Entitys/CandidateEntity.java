@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "Candidate") // Define la clase como una entidad JPA y la mapea a la tabla 'userQuerysEntities'
+@Entity(name = "candidate") // Define la clase como una entidad JPA y la mapea a la tabla 'userQuerysEntities'
 @Data // Genera automáticamente los métodos getter, setter, equals, hashCode y toString
 @NoArgsConstructor // Genera un constructor sin argumentos
 @AllArgsConstructor // Genera un constructor con todos los argumentos
