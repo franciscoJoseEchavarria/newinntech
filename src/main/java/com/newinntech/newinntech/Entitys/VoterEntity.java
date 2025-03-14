@@ -26,7 +26,7 @@ public class VoterEntity {
 
     private String email;
 
-    private boolean has_voted = false;
+    private boolean hasVoted = false;
 
 
 

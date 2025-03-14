@@ -17,7 +17,7 @@ public class VoterModel {
     private Long id; // Identificador único del votante
     private String name;
     private String email;
-    private boolean has_voted;
+    private boolean hasVoted;
 
 
 }

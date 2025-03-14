@@ -93,7 +93,7 @@ tasks.named('test') {
 }
 
 tasks.withType(org.springframework.boot.gradle.tasks.run.BootRun) {
-	mainClass.set('com.eafit.retoamadeus.Reto3BackAmadeusApplication')
+	mainClass.set('com.newinntech.newinntech.NewinntechApplication')
 }
 
 tasks.withType(JavaCompile) {
@@ -102,5 +102,5 @@ tasks.withType(JavaCompile) {
 
 
 bootJar {
-	mainClass.set('com.eafit.retoamadeus.Reto3BackAmadeusApplication')
+	mainClass.set('com.newinntech.newinntech.NewinntechApplication')
 }
