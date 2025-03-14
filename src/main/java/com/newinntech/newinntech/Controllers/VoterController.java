@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/voter")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 
@@ -23,19 +23,19 @@ public class VoterController {
     private final VoterService voterService;
 
 
-    @GetMapping("/list")
+    @GetMapping ("/voters")
     public List<VoterResponse> getVoterList() {
         return voterInterface.mapToVoterListToVoterResponseList(voterService.getVoterAll());
     }
 
     //
-    @GetMapping("/getVoterById/{id}")
+    @GetMapping("/voters/{id}")
     public VoterResponse getVoterById(@PathVariable Long id) {
         return voterInterface.mapToVoterModelToVoterResponse(voterService.getVoterById(id));
     }
 
 
-    @PostMapping ("/create")
+    @PostMapping ("/voters")
     public VoterResponse createVoter (@RequestBody VoterRequest voterRequest) {
 
         return voterInterface.mapToVoterModelToVoterResponse(voterService.CreateVoter
@@ -43,7 +43,7 @@ public class VoterController {
     }
 
 
-    @DeleteMapping ("/delete/{id}")
+    @DeleteMapping ("/voters/{id}")
     public VoterResponse deleteVoter (@PathVariable Long id){
         return  voterInterface.mapToVoterModelToVoterResponse(voterService.deteleVoterById(id));
     }

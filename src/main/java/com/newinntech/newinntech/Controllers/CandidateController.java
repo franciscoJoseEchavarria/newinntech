@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/candidate")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 public class CandidateController {
@@ -22,24 +22,24 @@ public class CandidateController {
     private final CandidateService candidateService;
 
 
-    @GetMapping("/list")
+    @GetMapping ("/candidates")
     public List<CandidateResponse> getCandidateList() {
         return candidateInterface.mapToCandidateListToCandidateResponseList(candidateService.getCandidateList());
     }
 
-    @GetMapping("/getCandidateById/{id}")
+    @GetMapping("/candidates/{id}")
     public CandidateResponse getCandidateById(@PathVariable Long id) {
         return candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.getCandidateById(id));
     }
 
-    @PostMapping ("/create")
+    @PostMapping ("/candidates")
     public CandidateResponse createCandidate (@RequestBody CandidateRequest candidateRequest) {
         return candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.CreateCandidate
                 (candidateInterface.mapToCandidateRequestToCandidateModel(candidateRequest)));
     }
 
 
-    @DeleteMapping ("/delete/{id}")
+    @DeleteMapping ("/candidates/{id}")
     public CandidateResponse deleteCandidate (@PathVariable Long id){
         return  candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.deleteCandidate(id));
     }
