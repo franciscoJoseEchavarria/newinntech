@@ -35,4 +35,16 @@ public class GlobalExceptionHandler  {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(VotoEmitido.class)
+    public ResponseEntity<Map<String, Object>> handleVotoEmitido(VotoEmitido ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.CONFLICT.value()); // Código 409 (conflicto)
+        response.put("error", "El voto ya ha sido emitido por voter");
+        response.put("message", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+
+
 }

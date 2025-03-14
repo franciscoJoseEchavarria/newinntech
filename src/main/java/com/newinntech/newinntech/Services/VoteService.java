@@ -4,6 +4,8 @@ package com.newinntech.newinntech.Services;
 import com.newinntech.newinntech.Entitys.CandidateEntity;
 import com.newinntech.newinntech.Entitys.VoteEntity;
 import com.newinntech.newinntech.Entitys.VoterEntity;
+import com.newinntech.newinntech.Exception.ResourceNotFoundException;
+import com.newinntech.newinntech.Exception.VotoEmitido;
 import com.newinntech.newinntech.Mapper.Implementation.CandidateMapper;
 import com.newinntech.newinntech.Mapper.Implementation.VoteMapper;
 import com.newinntech.newinntech.Models.VoteModel;
@@ -34,12 +36,12 @@ public class VoteService {
     public VoteModel createVote(VoteModel voteModel) {
         VoteEntity voteEntity = voteMapper.mapVoteModelToVoteEntity(voteModel);
         VoterEntity voterEntity = voterRepository.findById(voteEntity.getVoter().getId())
-                .orElseThrow(() -> new RuntimeException("El votante no existe"));
+                .orElseThrow(() -> new ResourceNotFoundException("El votante con ID" + voteEntity.getVoter().getId() + " no existe"));
         if (voterEntity.isHasVoted()) {
-            throw new RuntimeException("El votante ya ha emitido su voto");
+            throw new VotoEmitido("El votante ya ha emitido su voto");
         }
         CandidateEntity candidateEntity = candidateRepository.findById(voteEntity.getCandidate().getId())
-                .orElseThrow(() -> new RuntimeException("El candidato no existe"));
+                .orElseThrow(() -> new ResourceNotFoundException("El candidato con ID" + voteEntity.getCandidate().getId() + " no existe"));
         // Asignar las entidades completas al voteEntity para conservar la integridad de las relaciones
         voteEntity.setVoter(voterEntity);
         voteEntity.setCandidate(candidateEntity);
@@ -57,7 +59,7 @@ public class VoteService {
 
     public VoteModel getVoteById(Long id) {
         return voteMapper.mapVoteEntityToVoteModel(voteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El voto no existe")));
+                .orElseThrow(() -> new ResourceNotFoundException("El voto con ID" + id + " no existe")));
     }
 
     public List <VoteModel> getVoteAll() {
@@ -65,7 +67,7 @@ public class VoteService {
        List <VoteEntity> voteEntity = voteRepository.findAll();
 
        if(voteEntity.isEmpty()){
-           throw new RuntimeException("No hay votos registrados");
+           throw new ResourceNotFoundException("No hay votos en la BD");
        }
 
         return voteMapper.mapVoteEntityListToVoteModelList(voteEntity);
@@ -73,7 +75,7 @@ public class VoteService {
 
     public VoteModel deleteVoteById(Long id) {
         VoteEntity voteEntity = voteRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("El voto no se encuentra en la BD: " + id)
+                () -> new ResourceNotFoundException("El voto no se encuentra en la BD: " + id)
         );
         voteRepository.deleteById(id);
         return voteMapper.mapVoteEntityToVoteModel(voteEntity);
