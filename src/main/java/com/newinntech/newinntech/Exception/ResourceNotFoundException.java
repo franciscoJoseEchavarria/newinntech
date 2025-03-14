@@ -1,4 +1,4 @@
-package com.newinntech.newinntech.Exception.Vote;
+package com.newinntech.newinntech.Exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 

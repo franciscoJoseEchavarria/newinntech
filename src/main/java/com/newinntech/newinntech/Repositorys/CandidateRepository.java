@@ -11,5 +11,7 @@ import java.util.Optional;
 public interface CandidateRepository extends JpaRepository<CandidateEntity, Long> {
 
     Optional<CandidateEntity> findByName(String name);
+    Optional<CandidateEntity> findByNameIgnoreCase (String name);
+
     boolean existsByName(String name);
 }

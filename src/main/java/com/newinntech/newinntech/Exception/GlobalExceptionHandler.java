@@ -1,4 +1,4 @@
-package com.newinntech.newinntech.GlobalExceptionHandler;
+package com.newinntech.newinntech.Exception;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.newinntech.newinntech.Exception.Vote.ResourceNotFoundException;
+import com.newinntech.newinntech.Exception.ResourceNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler  {
@@ -23,5 +23,16 @@ public class GlobalExceptionHandler  {
         response.put("message", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
-	
+
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Map<String, Object>> handleVoterAlreadyCandidate(AlreadyExistsException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.CONFLICT.value()); // Código 409 (conflicto)
+        response.put("error", "Error en conflicto con la BD");
+        response.put("message", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
 }

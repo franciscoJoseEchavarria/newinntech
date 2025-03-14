@@ -2,9 +2,9 @@ package com.newinntech.newinntech.Services;
 
 
 import com.newinntech.newinntech.Entitys.VoterEntity;
-import com.newinntech.newinntech.Exception.Vote.ResourceNotFoundException;
-import com.newinntech.newinntech.Exception.Vote.VoterAlreadyCandidateException;
-import com.newinntech.newinntech.Exception.Vote.VoterAlreadyExistsException;
+import com.newinntech.newinntech.Exception.AlreadyExistsException;
+import com.newinntech.newinntech.Exception.ResourceNotFoundException;
+
 import com.newinntech.newinntech.Mapper.Implementation.VoterMapper;
 import com.newinntech.newinntech.Models.VoterModel;
 import com.newinntech.newinntech.Repositorys.VoterRepository;
@@ -38,9 +38,14 @@ public class VoterService {
 
         VoterEntity voterEntity = voterMapper.mapVoterModelToVoterEntity(voterModel);
 
-        voterRepository.findByEmail(voterEntity.getEmail())
+        voterRepository.findByEmailIgnoreCase(voterEntity.getEmail().toLowerCase())
                 .ifPresent(existing -> {
-                    throw new VoterAlreadyExistsException("El votante ya está registrado con el email: " + voterEntity.getEmail());
+                    throw new AlreadyExistsException("El votante ya está registrado con el email: " + voterEntity.getEmail());
+                });
+
+        voterRepository.findByNameIgnoreCase(voterEntity.getName().toLowerCase())
+                .ifPresent(existing -> {
+                    throw new AlreadyExistsException("El votante ya está registrado con el nombre: " + voterEntity.getName());
                 });
         return voterMapper.mapToVoterEntityToVoterModel(voterRepository.save(voterEntity));
 
@@ -48,7 +53,6 @@ public class VoterService {
 
     public  VoterModel getVoterById(Long id) {
         Optional <VoterEntity> voterEntity = voterRepository.findById(id);
-
         if (voterEntity.isEmpty()) {
             throw new ResourceNotFoundException(" el id no tiene asignación de usuario" );
         }
@@ -56,22 +60,19 @@ public class VoterService {
     }
 
     public List <VoterModel> getVoterAll() {
-
         List <VoterEntity> voterEntity = voterRepository.findAll();
 
         if (voterEntity.isEmpty()) {
             System.out.println("No hay usuarios registrados");
         }
-
         return voterMapper.mapToVoterListToEntityToVoterModelList(voterEntity);
     }
 
     public VoterModel deteleVoterById(Long id) {
-        Optional <VoterEntity> voterEntity = voterRepository.findById(id);
-        if (voterEntity.isEmpty()) {
-            System.out.println(" el id no tiene asignación de usuario" );
-        }
+        VoterEntity voterEntity = voterRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("El votante no se encuentra en la BD: " + id)
+        );
         voterRepository.deleteById(id);
-        return voterMapper.mapToVoterEntityToVoterModel(voterEntity.get());
+        return voterMapper.mapToVoterEntityToVoterModel(voterEntity);
     }
 }

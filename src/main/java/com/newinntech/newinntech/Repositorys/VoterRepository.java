@@ -17,6 +17,8 @@ public interface VoterRepository extends JpaRepository<VoterEntity, Long>
 
     Optional <VoterEntity> findById(Long id);
     Optional <VoterEntity> findByEmail(String email);
+    Optional<VoterEntity> findByEmailIgnoreCase(String email);
+    Optional<VoterEntity> findByNameIgnoreCase(String name);
     Optional <VoterEntity> findByName(String name);
     boolean existsByName(String name);
     // Para contar los votantes que ya han votado:
