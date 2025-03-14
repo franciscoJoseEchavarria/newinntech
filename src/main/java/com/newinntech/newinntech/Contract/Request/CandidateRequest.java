@@ -13,8 +13,6 @@ import lombok.Data;
 
 public class CandidateRequest {
 
-
-    private Long id; // Identificador único del votante
     private String name;
     private String party;
     private int votes = 0;

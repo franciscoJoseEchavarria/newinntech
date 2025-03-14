@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @Builder //patron de diseño builder
 
 public class VoteModel {
-    private Long id; // Identificador único del votante
-    private VoterModel voter_id;
-    private CandidateModel candidate_id;
+
+    private Long id;
+    private VoterModel voter;
+    private CandidateModel candidate;
 }

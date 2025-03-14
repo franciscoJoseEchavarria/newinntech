@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class VoterRequest {
 
 
-    private Long id; // Identificador único del votante
+
     private String name;
     private String email;
     private Boolean hasVoted;
