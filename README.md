@@ -75,25 +75,24 @@ Puede encontrar en el archivo newinntech.postman_collection para realizar los co
 
 ### La API expone los siguientes endpoints:
 
-Voters (Votantes):
-GET /api/voters: Obtiene la lista de votantes.
-GET /api/voters/{id}: Obtiene un votante por su ID.
-POST /api/voters: Crea un nuevo votante.
+**Voters (Votantes):**
+- GET /api/voters: Obtiene la lista de votantes.
+- GET /api/voters/{id}: Obtiene un votante por su ID.
+- POST /api/voters: Crea un nuevo votante.
+- DELETE /api/voters/{id}: Elimina un votante por su ID.
 
-DELETE /api/voters/{id}: Elimina un votante por su ID.
-
-Candidates (candidatos):
-GET /api/candidates: Obtiene la lista de candidatos.
-GET /api/candidates/{id}: Obtiene un candidato por su ID.
-POST /api/candidates: Crea un nuevo candidato.
-DELETE /api/candidates/{id}: Elimina un candidato por su ID.
+**Candidates (candidatos):**
+- GET /api/candidates: Obtiene la lista de candidatos.
+- GET /api/candidates/{id}: Obtiene un candidato por su ID.
+- POST /api/candidates: Crea un nuevo candidato.
+- DELETE /api/candidates/{id}: Elimina un candidato por su ID.
 
 
-Votes (conteo de Votos):
-GET /api/votes: Obtiene la lista de votos.
-GET /api/votes/{id}: Obtiene un voto por su ID.
-POST /api/votes: Crea un nuevo voto.
-DELETE /api/votes/{id}: Elimina un voto por su ID.
+**Votes (conteo de Votos):**
+- GET /api/votes: Obtiene la lista de votos.
+- GET /api/votes/{id}: Obtiene un voto por su ID.
+- POST /api/votes: Crea un nuevo voto.
+- DELETE /api/votes/{id}: Elimina un voto por su ID.
 
 ### Implementar Swagger
 
@@ -113,3 +112,66 @@ Ejecuta tu aplicación Spring Boot como lo haces normalmente. Swagger estará di
 
 Abre tu navegador y navega a http://localhost:8081/swagger-ui.html. Deberías ver la interfaz de Swagger UI con la documentación de tu API.
 
+## Arquitectura por Capas
+
+El proyecto sigue una arquitectura en capas, donde cada una tiene una responsabilidad específica:
+
+### 1. Capa de Entidades (Entities)
+- **Descripción:**  
+  Las entidades representan las tablas de la base de datos y están mapeadas mediante **JPA/Hibernate**.
+- **Ejemplo:**
+   - `VoterEntity`: Representa un votante y contiene propiedades como `id`, `email`, `name` y `hasVoted`.
+   - `CandidateEntity`: Representa un candidato con propiedades como `id`, `name`, `party` y `votes`.
+   - `VoteEntity`: Representa un voto, que se relaciona con un votante y un candidato (a través de relaciones `@ManyToOne`).
+
+### 2. Capa de Modelos (Models)
+- **Descripción:**  
+  Los modelos son objetos de transferencia de datos que se usan internamente para representar la información y trabajar con la lógica de negocio.
+- **Ejemplo:**
+   - `VoterModel`: Similar a `VoterEntity`, pero puede contener solo la información necesaria para la lógica de negocio o presentación.
+   - `CandidateModel`: Similar a `CandidateEntity`, con la información relevante del candidato.
+   - `VoteModel`: Se utiliza para representar un voto a nivel de lógica, incluyendo referencias al votante y al candidato.
+
+### 3. Capa de Contratos (Contracts)
+- **Descripción:**  
+  Los contratos definen el formato de los datos que se reciben (Request) y se envían (Response) a través de la API REST.
+- **Ejemplo:**
+   - `VoterRequest` y `VoterResponse`: Objeto de entrada y salida para operaciones relacionadas con votantes.
+   - `CandidateRequest` y `CandidateResponse`: Para las operaciones de candidatos.
+   - `VoteRequest` y `VoteResponse`: Para emitir votos y retornar la información del voto emitido.
+
+### 4. Capa de Mapeo (Mappers) e Interfaces
+- **Descripción:**  
+  Se utiliza **MapStruct** para transformar objetos entre las diferentes capas (por ejemplo, de Request a Model, de Model a Entity, o de Entity a Response).
+- **Ejemplo:**
+  
+   - `VoteInterface` y `VoteMapper`: Definen los métodos para convertir entre `VoteRequest`, `VoteModel`, `VoteEntity` y `VoteResponse`.
+
+### 5. Capa de Repositorios (Repositories)
+- **Descripción:**  
+  Esta capa se encarga de la comunicación con la base de datos. Utiliza **Spring Data JPA** para definir métodos de consulta, persistencia, actualización y eliminación de datos.
+- **Ejemplo:**
+   - `VoterRepository`: Extiende de `JpaRepository` para operaciones CRUD sobre votantes.
+   - `CandidateRepository`: Para candidatos.
+   - `VoteRepository`: Para votos, incluye consultas personalizadas (por ejemplo, para agrupar votos y generar estadísticas).
+
+### 6. Capa de Servicios (Services)
+- **Descripción:**  
+  Contiene la lógica de negocio del sistema. Aquí se realizan validaciones, se coordinan llamadas a repositorios y se aplican reglas de negocio (por ejemplo, verificar que un votante no haya votado previamente, actualizar el conteo de votos, etc.).
+- **Ejemplo:**
+   - `VoterService`: Gestión de votantes (registro, obtención, eliminación).
+   - `CandidateService`: Gestión de candidatos.
+   - `VoteService`:
+      - **Emisión de Voto:** Valida el votante y candidato, persiste el voto y actualiza los contadores (flag de votado en el votante y conteo de votos en el candidato).
+      - **Estadísticas:** Incluye métodos para obtener estadísticas de la votación, como el total de votos por candidato, porcentaje de votos y total de votantes que han votado.
+
+### 7. Capa de Controladores (Controllers)
+- **Descripción:**  
+  Expone la API REST para que los clientes puedan interactuar con el sistema. Los controladores reciben las solicitudes HTTP, invocan los servicios correspondientes y devuelven respuestas en formato JSON.
+- **Ejemplo:**
+   - `VoterController`: Endpoints para gestionar votantes.
+   - `CandidateController`: Endpoints para gestionar candidatos.
+   - `VoteController`:
+      - **POST /votes:** Emite un voto.
+      - **GET /votes:** Obtiene todos los votos.
+      - **GET /votes/statistics:** Retorna las estadísticas de la votación.
