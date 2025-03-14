@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "3ae60025-a031-4b59-af30-491f2cc832a7",
+		"name": "newinntech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39459058"
+	},
+	"item": [
+		{
+			"name": "Voter",
+			"item": [
+				{
+					"name": "getVoterList",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}voters"
+					},
+					"response": []
+				},
+				{
+					"name": "getVoterId",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}voters/1"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n \"name\": \"pablo Arango\",\r\n  \"email\": \"pablo@gmailx.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}voters"
+					},
+					"response": []
+				},
+				{
+					"name": "delated",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n  \"name\": \"John wss\",\r\n  \"email\": \"john@essample.com\",\r\n  \"hasVoted\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}voter/delete/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidate",
+			"item": [
+				{
+					"name": "getList",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}candidates"
+					},
+					"response": []
+				},
+				{
+					"name": "byId",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}candidates/2"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n  \"name\": \"Pablo arangos\",\r\n  \r\n  \"party\": \"asd\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}candidates"
+					},
+					"response": []
+				},
+				{
+					"name": "create Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n  \"name\": \"Rwul\",\r\n  \"email\": \"j@essasadassasdasdasdample.com\",\r\n  \"party\": \"asd\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}candidates/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Votes",
+			"item": [
+				{
+					"name": "votesAll",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}votes"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}votes"
+					},
+					"response": []
+				},
+				{
+					"name": "votesId",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}votes/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

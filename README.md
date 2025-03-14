@@ -55,5 +55,60 @@ spring.datasource.username=postgres
 spring.datasource.password=nueva123
 ```
 
-6. **Ejecutar la aplicación**
+6. **Ejecutar la aplicación - PUERTO POR DEFECTO 8081**
+En la ventana de Project, navega hasta NewinntechApplication.java.
+Haz clic derecho en el archivo NewinntechApplication.java y selecciona Run 'NewinntechApplication'.
+Esto iniciará tu aplicación Spring Boot en el puerto configurado (por defecto, 8081).
+
+## Uso de API
+
+Puede encontrar en el archivo newinntech.postman_collection para realizar los consumos de la APIs directamente en Postman.
+
+### Importar la colección de Postman
+
+1. Abre Postman.
+2. Haz clic en el botón Import en la esquina superior izquierda.
+3. Selecciona la pestaña Upload Files.
+4. Navega hasta el archivo newinntech.postman_collection.json y selecciónalo.
+5. Haz clic en Import.
+
+### La API expone los siguientes endpoints:
+
+Voters (Votantes):
+GET /api/voters: Obtiene la lista de votantes.
+GET /api/voters/{id}: Obtiene un votante por su ID.
+POST /api/voters: Crea un nuevo votante.
+
+DELETE /api/voters/{id}: Elimina un votante por su ID.
+
+Candidates (candidatos):
+GET /api/candidates: Obtiene la lista de candidatos.
+GET /api/candidates/{id}: Obtiene un candidato por su ID.
+POST /api/candidates: Crea un nuevo candidato.
+DELETE /api/candidates/{id}: Elimina un candidato por su ID.
+
+
+Votes (conteo de Votos):
+GET /api/votes: Obtiene la lista de votos.
+GET /api/votes/{id}: Obtiene un voto por su ID.
+POST /api/votes: Crea un nuevo voto.
+DELETE /api/votes/{id}: Elimina un voto por su ID.
+
+### Implementar Swagger
+
+1. Agregar las dependencias de Swagger en tu archivo build.gradle:
+```
+dependencies {
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+    implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.14'
+    implementation 'org.springdoc:springdoc-openapi-security:1.6.14'
+}
+```
+2. Ejecutar la aplicación:
+
+Ejecuta tu aplicación Spring Boot como lo haces normalmente. Swagger estará disponible en la URL http://localhost:8081/swagger-ui.html.
+
+3. Verificar la documentación de la API:
+
+Abre tu navegador y navega a http://localhost:8081/swagger-ui.html. Deberías ver la interfaz de Swagger UI con la documentación de tu API.
 
