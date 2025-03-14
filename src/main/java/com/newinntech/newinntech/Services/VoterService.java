@@ -63,7 +63,7 @@ public class VoterService {
         List <VoterEntity> voterEntity = voterRepository.findAll();
 
         if (voterEntity.isEmpty()) {
-            System.out.println("No hay usuarios registrados");
+            throw new ResourceNotFoundException("No hay usuarios registrados");
         }
         return voterMapper.mapToVoterListToEntityToVoterModelList(voterEntity);
     }

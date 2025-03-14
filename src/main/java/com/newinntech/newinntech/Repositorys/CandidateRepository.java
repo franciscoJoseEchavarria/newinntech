@@ -12,6 +12,7 @@ public interface CandidateRepository extends JpaRepository<CandidateEntity, Long
 
     Optional<CandidateEntity> findByName(String name);
     Optional<CandidateEntity> findByNameIgnoreCase (String name);
+    Optional<CandidateEntity> findById(Long id);
 
     boolean existsByName(String name);
 }
