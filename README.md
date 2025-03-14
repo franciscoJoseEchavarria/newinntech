@@ -71,6 +71,7 @@ Puede encontrar en el archivo newinntech.postman_collection para realizar los co
 3. Selecciona la pestaña Upload Files.
 4. Navega hasta el archivo newinntech.postman_collection.json y selecciónalo.
 5. Haz clic en Import.
+6. En Autorizaciones, en Auth Type selecciona Basic Auth y en Username y Password coloca user y password respectivamente.
 
 ### La API expone los siguientes endpoints:
 

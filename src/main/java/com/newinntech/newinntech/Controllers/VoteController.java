@@ -40,7 +40,7 @@ public class VoteController {
     }
 
 
-    @DeleteMapping("/Votes/{id}")
+    @DeleteMapping("/votes/{id}")
     public VoteResponse deleteVote(@PathVariable Long id) {
         VoteModel voteModel = voteService.deleteVoteById(id);
         return voteInterface.mapVoteModelToVoteResponse(voteModel);
