@@ -225,6 +225,31 @@
 					"response": []
 				},
 				{
+					"name": "create Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "password",
+								"username": "user"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}votes/1"
+					},
+					"response": []
+				},
+				{
 					"name": "votesId",
 					"request": {
 						"auth": {
