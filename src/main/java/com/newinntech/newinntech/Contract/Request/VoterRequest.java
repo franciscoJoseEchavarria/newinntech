@@ -16,5 +16,5 @@ public class VoterRequest {
     private Long id; // Identificador único del votante
     private String name;
     private String email;
-    private boolean hasVoted = false;
+    private Boolean hasVoted;
 }

@@ -4,6 +4,7 @@ package com.newinntech.newinntech.Controllers;
 import com.newinntech.newinntech.Contract.Reponse.VoterResponse;
 import com.newinntech.newinntech.Contract.Request.VoterRequest;
 import com.newinntech.newinntech.Mapper.Interface.VoterInterface;
+import com.newinntech.newinntech.Models.VoterModel;
 import com.newinntech.newinntech.Services.VoterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +36,10 @@ public class VoterController {
 
 
     @PostMapping ("/create")
-    public VoterResponse createVoter (VoterRequest voterRequest){
-        return  voterInterface.mapToVoterModelToVoterResponse(voterService.CreateVoter
-                (voterInterface.mapToVoterRequestToVoterModel(voterRequest)));
+    public VoterResponse createVoter (@RequestBody VoterRequest voterRequest) {
 
+        return voterInterface.mapToVoterModelToVoterResponse(voterService.CreateVoter
+                (voterInterface.mapToVoterRequestToVoterModel(voterRequest)));
     }
 
 

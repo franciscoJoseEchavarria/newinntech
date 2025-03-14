@@ -2,6 +2,7 @@ package com.newinntech.newinntech.Services;
 
 
 import com.newinntech.newinntech.Entitys.VoterEntity;
+import com.newinntech.newinntech.Exception.Vote.ResourceNotFoundException;
 import com.newinntech.newinntech.Exception.Vote.VoterAlreadyCandidateException;
 import com.newinntech.newinntech.Exception.Vote.VoterAlreadyExistsException;
 import com.newinntech.newinntech.Mapper.Implementation.VoterMapper;
@@ -49,8 +50,9 @@ public class VoterService {
 
     public  VoterModel getVoterById(Long id) {
         Optional <VoterEntity> voterEntity = voterRepository.findById(id);
+
         if (voterEntity.isEmpty()) {
-            System.out.println(" el id no tiene asignación de usuario" );
+            throw new ResourceNotFoundException(" el id no tiene asignación de usuario" );
         }
         return voterMapper.mapToVoterEntityToVoterModel(voterEntity.get());
     }
