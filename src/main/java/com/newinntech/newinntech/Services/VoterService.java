@@ -24,10 +24,8 @@ import java.util.Optional;
 @Service
 public class VoterService {
 
-
     private final VoterRepository voterRepository;
     private final VoterMapper voterMapper;
-
 
     /**
      * Crea un nuevo votante.
