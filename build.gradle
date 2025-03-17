@@ -37,12 +37,6 @@ dependencies {
 	// Plataforma de lanzamiento para pruebas con JUnit
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	// Librería para trabajar con JSON (serialización y deserialización)
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.0'
-
-	// Implementación del núcleo de Hibernate ORM para manejar entidades JPA
-	implementation 'org.hibernate.orm:hibernate-core:6.6.1.Final'
-
 	// Librería para inyección de dependencias
 	implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
@@ -51,7 +45,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
 	// Starter para construir aplicaciones web (incluye soporte RESTful)
-	implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.31'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	// Librería MapStruct para generación automática de mapeos entre objetos
@@ -69,9 +63,6 @@ dependencies {
 	testImplementation 'org.mockito:mockito-core'
 	testImplementation 'com.h2database:h2'
 
-	// Swagger
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
-
 	// Validaciones
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
@@ -88,7 +79,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	// Swagger/OpenAPI (versión recomendada para Spring Boot 3.x)
-	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	
 }
 

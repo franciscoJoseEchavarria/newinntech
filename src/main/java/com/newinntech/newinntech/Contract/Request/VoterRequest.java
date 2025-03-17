@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 
 public class VoterRequest {
 
-
-
     private String name;
     private String email;
     private Boolean hasVoted;

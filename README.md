@@ -50,9 +50,9 @@ Debería mostrar la ruta a tu instalación de JDK.
 Asegúrate de que PostgreSQL esté instalado y en ejecución. Luego, crea una base de datos llamada pruebarelaciones5 y configura las credenciales en el archivo application.properties
 
 ```
-spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/pruebarelaciones5
+spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/pruebarelaciones5 //nombre de la base de datos
 spring.datasource.username=postgres
-spring.datasource.password=nueva123
+spring.datasource.password= //pasword de postgres
 ```
 
 6. **Ejecutar la aplicación - PUERTO POR DEFECTO 8081**
@@ -71,7 +71,7 @@ Puede encontrar en el archivo newinntech.postman_collection para realizar los co
 3. Selecciona la pestaña Upload Files.
 4. Navega hasta el archivo newinntech.postman_collection.json y selecciónalo.
 5. Haz clic en Import.
-6. En Autorizaciones, en Auth Type selecciona Basic Auth y en Username y Password coloca user y password respectivamente.
+6. **En Autorizaciones, en Auth Type selecciona Basic Auth y en Username y Password coloca user y password respectivamente.**
 
 ### La API expone los siguientes endpoints:
 

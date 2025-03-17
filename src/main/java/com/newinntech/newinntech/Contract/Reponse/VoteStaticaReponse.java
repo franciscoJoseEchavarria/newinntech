@@ -1,20 +1,17 @@
 package com.newinntech.newinntech.Contract.Reponse;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Data //getters, setters, equals, hashcode, tostring
+import java.util.List;
 
+@Data //getters, setters, equals, hashcode, tostring
 @AllArgsConstructor //constructor con todos los argumentos
 @Builder //patron de diseño builder
 
-
-
-public class CandidateResponse {
-
-    private Long id; // Identificador único del votante
-    private String name;
-    private String party;
-    private Long votes = 0L;
+public class VoteStaticaReponse {
+    private List<CandidateStaticResponse> candidateStatistics;
+    private Long totalVoters;
 }

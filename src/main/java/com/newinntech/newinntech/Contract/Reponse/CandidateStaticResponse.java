@@ -1,5 +1,6 @@
 package com.newinntech.newinntech.Contract.Reponse;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,11 +11,9 @@ import lombok.Data;
 @Builder //patron de diseño builder
 
 
-
-public class CandidateResponse {
-
-    private Long id; // Identificador único del votante
-    private String name;
-    private String party;
-    private Long votes = 0L;
+public class CandidateStaticResponse {
+    private Long candidateId;
+    private String candidateName;
+    private Long totalVotes;
+    private Double percentage;
 }

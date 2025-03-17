@@ -15,5 +15,5 @@ public class CandidateModel {
     private Long id; // Identificador único del votante
     private String name;
     private String party;
-    private int votes = 0;
+    private Long votes = 0L;
 }

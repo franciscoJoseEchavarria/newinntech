@@ -23,5 +23,5 @@ public class CandidateEntity {
     private String name;
     // Indica que este campo no suede ser nulo en la base de datos
     private String party;
-    private int votes = 0;
+    private Long votes = 0L;
 }

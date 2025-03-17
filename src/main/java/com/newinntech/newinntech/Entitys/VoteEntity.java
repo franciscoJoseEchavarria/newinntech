@@ -19,9 +19,11 @@ public class VoteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY) // Un votante puede votar una vez
     @JoinColumn(name = "voter_id", nullable = false, unique = true)
     private VoterEntity voter;
+
     @ManyToOne(fetch = FetchType.LAZY) // Un candidato puede recibir muchos votos
     @JoinColumn(name = "candidate_id", nullable = false)
     private CandidateEntity candidate;

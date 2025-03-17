@@ -19,12 +19,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        // Permite acceso a endpoints públicos o específicos, aquí se requiere autenticación para todas las solicitudes
+                        // Permitir acceso sin autenticación a Swagger/OpenAPI
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                        // El resto de rutas requieren autenticación
                         .anyRequest().authenticated()
-                         )
-                // Se habilita autenticación básica
+                )
                 .httpBasic(Customizer.withDefaults())
-                // Deshabilitar CSRF si es una API REST (opcional, según tus necesidades)
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }

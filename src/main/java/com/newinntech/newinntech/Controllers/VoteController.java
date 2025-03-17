@@ -2,6 +2,7 @@ package com.newinntech.newinntech.Controllers;
 
 
 import com.newinntech.newinntech.Contract.Reponse.VoteResponse;
+import com.newinntech.newinntech.Contract.Reponse.VoteStaticaReponse;
 import com.newinntech.newinntech.Contract.Request.VoteRequest;
 import com.newinntech.newinntech.Mapper.Interface.VoteInterface;
 import com.newinntech.newinntech.Mapper.Interface.VoterInterface;
@@ -9,6 +10,7 @@ import com.newinntech.newinntech.Models.VoteModel;
 import com.newinntech.newinntech.Services.VoteService;
 import com.newinntech.newinntech.Services.VoterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +40,14 @@ public class VoteController {
     public List <VoteResponse> getVotes() {
         return voteInterface.mapVoteModelListToResponseList(voteService.getVoteAll());
     }
+
+    @GetMapping ("/votes/statistics")
+    public ResponseEntity<VoteStaticaReponse> getVoteStatistics() {
+        VoteStaticaReponse response = voteService.getVoteStatistics();
+        return ResponseEntity.ok(response);
+    }
+
+
 
 
     @DeleteMapping("/votes/{id}")

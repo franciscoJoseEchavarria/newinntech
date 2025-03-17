@@ -2,12 +2,14 @@ package com.newinntech.newinntech.Controllers;
 
 
 import com.newinntech.newinntech.Contract.Reponse.CandidateResponse;
+import com.newinntech.newinntech.Contract.Reponse.VoteStaticaReponse;
 import com.newinntech.newinntech.Contract.Request.CandidateRequest;
 import com.newinntech.newinntech.Mapper.Interface.CandidateInterface;
 
 import com.newinntech.newinntech.Repositorys.CandidateRepository;
 import com.newinntech.newinntech.Services.CandidateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class CandidateController {
         return candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.getCandidateById(id));
     }
 
+
     @PostMapping ("/candidates")
     public CandidateResponse createCandidate (@RequestBody CandidateRequest candidateRequest) {
         return candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.CreateCandidate
@@ -43,5 +46,7 @@ public class CandidateController {
     public CandidateResponse deleteCandidate (@PathVariable Long id){
         return  candidateInterface.mapToCandidateModelToCandidateResponse(candidateService.deleteCandidate(id));
     }
+
+
 
 }

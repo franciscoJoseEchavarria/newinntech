@@ -22,7 +22,6 @@ public class VoterEntity {
     private String name;
     @Column(nullable = false)
     private String email;
-
     private boolean hasVoted = false;
 
 

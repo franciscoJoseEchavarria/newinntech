@@ -2,9 +2,12 @@ package com.newinntech.newinntech.Repositorys;
 
 
 import com.newinntech.newinntech.Entitys.VoteEntity;
+import com.newinntech.newinntech.Repositorys.projection.CandidateVoteCount;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,4 +18,10 @@ public interface VoteRepository extends JpaRepository<VoteEntity, Long> {
     Optional <VoteEntity> findByCandidateId(Long candidateId);
     boolean existsByVoterId(Long voterId);
     boolean existsByCandidateId(Long candidateId);
+
+
+    @Query("SELECT v.candidate.id candidateId, COUNT(v) totalVotes " +
+            "FROM Vote v " +
+            "GROUP BY v.candidate.id")
+    List<CandidateVoteCount> countVotesByCandidate();
 }
